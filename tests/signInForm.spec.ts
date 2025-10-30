@@ -3,14 +3,10 @@ import SignInForm from "../pom/forms/SignInForm"
 import HomePage from "../pom/pages/HomePage";
 import { validUserData, registeredUserData } from "../pom/UserDataInterface";
 
-
 let signInForm: SignInForm;
 let homePage: HomePage;
-
 let randomChar = require('random-char');
 let skipClosing: boolean;
-// const validData = validUserData;
-// const registeredData = registeredUserData;
 
 test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
@@ -42,7 +38,7 @@ test.describe('Sign In form positive tests', () => {
         skipClosing = true;
     });
 
-        test("Check Sign In with 'Remember me' checkbox", async ({ page }) => {
+    test("Check Sign In with 'Remember me' checkbox", async ({ page }) => {
         signInForm.SuccessfulSignIn(registeredUserData);
         await expect(signInForm.login_btn).toBeEnabled();
         signInForm.rememberMe_checkbox.check();
@@ -53,7 +49,6 @@ test.describe('Sign In form positive tests', () => {
         await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage');
         skipClosing = true;
     });
-
 
     test("Check UI of Sign In form", async () => {
         await expect(signInForm.title).toContainText('Log in');
@@ -96,6 +91,7 @@ test.describe('Sign In form positive tests', () => {
 });
 
 test.describe('Sign In form negative tests', () => {
+
     test("[-] Check Sign In flow using invalid data", async () => {
         signInForm.UnsuccessfulSignIn(validUserData);
         await expect(signInForm.login_btn).toBeEnabled();

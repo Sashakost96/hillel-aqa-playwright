@@ -66,7 +66,7 @@ test.describe('Sign up form positive tests', () => {
         await expect(signUpForm.registrationError1).toHaveCSS('border-color', signUpForm.alertBorder_red);
     });
 
-    test("Check Name field with Real-time validation", async ({ page }) => {
+    test("Check Name field with Real-time validation", async () => {
         await signUpForm.name_input.pressSequentially(randomChar('1234567890!@#$%^&*()_-+='));
         await signUpForm.name_input.blur();
         await expect.soft(signUpForm.name_validation).toContainText('Name is invalid');
@@ -78,7 +78,7 @@ test.describe('Sign up form positive tests', () => {
         await expect.soft(signUpForm.name_hasBe).toBeHidden();
     });
 
-    test("Check Last Name field with Real-time validation", async ({ page }) => {
+    test("Check Last Name field with Real-time validation", async () => {
         await signUpForm.lname_input.pressSequentially(randomChar('1234567890!@#$%^&*()_-+='));
         await signUpForm.lname_input.blur();
         await expect.soft(signUpForm.lname_validation).toContainText('Last name is invalid');
@@ -157,7 +157,6 @@ test.describe('Sign up form positive tests', () => {
         await expect(signUpForm.register_btn).toHaveCSS('color', signUpForm.regBtn_color);
         await expect(signUpForm.register_btn).toHaveCSS('background-color', signUpForm.regBtnBg_color);
         await expect(signUpForm.register_btn).toHaveCSS('border-color', signUpForm.regBtnBg_color);
-
     });
 
     test("Check validation when Name has leading/trailing spaces", async () => {

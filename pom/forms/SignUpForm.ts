@@ -84,46 +84,45 @@ export default class SignUpForm {
 
     async enterName(name: string): Promise<void> {
         await this.name_input.fill(name);
-
     }
+
     async enterLName(lname: string): Promise<void> {
         await this.lname_input.fill(lname);
-
     }
+
     async enterEmail(email: string): Promise<void> {
         await this.email_input.fill(email);
-
     }
+
     async enterPassword(password: string): Promise<void> {
         await this.password_input.fill(password);
-
     }
+
     async enterRepeatPassword(password: string): Promise<void> {
         await this.repeatPassword_input.fill(password);
-
     }
 
     async clickOnRegistrationBtn(): Promise<void> {
         await this.register_btn.click();
-
     }
+
     async clickOnCloseBtn(): Promise<void> {
         await this.close_btn.click();
     }
+
     async SuccessfulSignUp(data: UserData): Promise<void> {
         await this.enterName(data.name);
         await this.enterLName(data.lname);
         await this.enterEmail(data.email);
         await this.enterPassword(data.password);
         await this.enterRepeatPassword(data.password)
-        // await this.clickOnRegistrationBtn();
     }
+
     async UnsuccessfulSignUp(data: UserData): Promise<void> {
         await this.enterName(data.name);
         await this.enterLName(data.lname);
         await this.enterEmail(data.email);
         await this.enterPassword(data.password);
         await this.enterRepeatPassword(data.password)
-        //await this.clickOnRegistrationBtn();
     }
 }

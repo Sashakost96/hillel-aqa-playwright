@@ -8,7 +8,6 @@ export default class RestoreAccessForm {
     readonly close_btn: Locator;
     readonly send_btn: Locator;
     readonly email_validation: Locator;
-    readonly regex_email: RegExp;
     readonly input_red: string;
     readonly border_blue: string;
     readonly border_default: string;
@@ -24,7 +23,6 @@ export default class RestoreAccessForm {
         this.close_btn = page.locator('//app-forgot-password-modal/div[1]//button');
         this.email_validation = page.locator('//div[@class="invalid-feedback"]/p');
 
-        this.regex_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         this.input_red = 'rgb(220, 53, 69)';
         this.border_blue = 'rgb(92, 179, 253)';
         this.border_default = 'rgb(206, 212, 218)';
@@ -46,6 +44,5 @@ export default class RestoreAccessForm {
 
     async FillFormWithEmail(data: UserData): Promise<void> {
         await this.enterEmail(data.email);
-        // await this.clickOnRegistrationBtn();
     }
 }

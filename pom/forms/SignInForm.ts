@@ -21,12 +21,8 @@ export default class SignInForm {
     readonly alert_red: string;
     readonly alertBg_red: string;
     readonly alertBorder_red: string;
-
     readonly input_red: string;
     readonly border_blue: string;
-    // readonly border_default: string;
-    // readonly regBtn_color: string;
-    // readonly regBtnBg_color: string;
 
     constructor(page: Page) {
         this.page = page;
@@ -51,9 +47,6 @@ export default class SignInForm {
         this.alertBorder_red = 'rgb(245, 198, 203)';
         this.input_red = 'rgb(220, 53, 69)';
         this.border_blue = 'rgb(92, 179, 253)';
-        // this.border_default = 'rgb(206, 212, 218)';
-        // this.regBtn_color = 'rgb(255, 255, 255)';
-        // this.regBtnBg_color = 'rgb(2, 117, 216)';
     }
 
     async enterEmail(email: string): Promise<void> {
@@ -79,21 +72,18 @@ export default class SignInForm {
     async SuccessfulSignIn(data: UserData): Promise<void> {
         await this.enterEmail(data.email);
         await this.enterPassword(data.password);
-        // await this.clickOnRegistrationBtn();
     }
 
     async UnsuccessfulSignIn(data: UserData): Promise<void> {
         await this.enterEmail(data.email);
         await this.enterPassword(data.password);
-        //await this.clickOnRegistrationBtn();
     }
 
-    async SwitchToSignUpForm(): Promise <void> {
+    async SwitchToSignUpForm(): Promise<void> {
         await this.registration_btn.click();
     }
 
     async NavigateToRestoreAccessForm(): Promise<void> {
         await this.forgotPass_btn.click();
-        
     }
 }

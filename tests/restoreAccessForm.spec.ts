@@ -7,10 +7,7 @@ import { registeredUserData, inValidUserData } from "../pom/UserDataInterface";
 let signInForm: SignInForm;
 let homePage: HomePage;
 let restoreAccessForm: RestoreAccessForm;
-
-let randomChar = require('random-char');
 let skipClosing: boolean;
-
 
 test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
@@ -57,7 +54,6 @@ test.describe('Restore Access form positive tests', () => {
         await expect(restoreAccessForm.send_btn).toHaveCSS('background-color', restoreAccessForm.sentBtnBg_color);
         await expect(restoreAccessForm.close_btn).toBeEnabled();
     });
-
 });
 
 test.describe('Restore Access form negative tests', () => {
@@ -82,5 +78,4 @@ test.describe('Restore Access form negative tests', () => {
         await homePage.restoreAccessFormFormIsNotDisplay();
         skipClosing = true;
     });
-
 });
