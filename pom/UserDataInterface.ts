@@ -19,3 +19,10 @@ export const validUserData: UserData = {
     password: "test123KO!",
 };
 
+export const inValidUserData: UserData = {
+    name: "_Test",
+    lname: "_Auto",
+    email: "ke@gmail.",
+    password: " test123KO!",
+};
+
