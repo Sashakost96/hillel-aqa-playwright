@@ -47,7 +47,7 @@ test.describe('Sign up form positive tests', () => {
         await expect(signUpForm.close_btn).toBeEnabled();
     });
 
-    test.skip("Check Successful registration with valid data", async ({ page }) => {
+    test("Check Successful registration with valid data", async ({ page }) => {
         signUpForm.SuccessfulSignUp(validData);
         await expect(signUpForm.register_btn).toBeEnabled();
         await signUpForm.clickOnRegistrationBtn();

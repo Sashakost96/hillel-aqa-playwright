@@ -87,4 +87,13 @@ export default class SignInForm {
         await this.enterPassword(data.password);
         //await this.clickOnRegistrationBtn();
     }
+
+    async SwitchToSignUpForm(): Promise <void> {
+        await this.registration_btn.click();
+    }
+
+    async NavigateToRestoreAccessForm(): Promise<void> {
+        await this.forgotPass_btn.click();
+        
+    }
 }

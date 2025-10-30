@@ -7,6 +7,7 @@ export default class HomePage {
     private readonly signIn_btn: Locator;
     private readonly signUp_model: Locator;
     private readonly signIn_model: Locator;
+    readonly restoreAccess_model: Locator;
     
     constructor(page: Page){
         this.page = page;
@@ -14,6 +15,7 @@ export default class HomePage {
         this.signIn_btn = page.locator('//button[contains(text(), "Sign In")]');
         this.signUp_model = page.locator('//div[@class="modal-content"]');
         this.signIn_model = page.locator('//div[@class="modal-content"]');
+        this.restoreAccess_model = page.locator('//app-forgot-password-modal');
 
     };
 
@@ -39,6 +41,14 @@ export default class HomePage {
     
     async signInFormIsNotDisplay(): Promise <void> {
          await expect(this.signIn_model).not.toBeVisible();
+    };
+
+    async restoreAccessFormFormIsDisplay(): Promise <void> {
+         await expect(this.restoreAccess_model).toBeVisible();
+    };
+
+    async restoreAccessFormFormIsNotDisplay(): Promise <void> {
+         await expect(this.restoreAccess_model).not.toBeVisible();
     };
 
 

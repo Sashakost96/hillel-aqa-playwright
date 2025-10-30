@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import SignInForm from "../pom/forms/SignInForm"
 import HomePage from "../pom/pages/HomePage";
-import { validUserData, registeredUserData, inValidUserData } from "../pom/UserDataInterface";
+import { validUserData, registeredUserData } from "../pom/UserDataInterface";
 
 
 let signInForm: SignInForm;
@@ -9,9 +9,8 @@ let homePage: HomePage;
 
 let randomChar = require('random-char');
 let skipClosing: boolean;
-const validData = validUserData;
-const inValidData = inValidUserData;
-const registeredData = registeredUserData;
+// const validData = validUserData;
+// const registeredData = registeredUserData;
 
 test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
@@ -55,7 +54,6 @@ test.describe('Sign In form positive tests', () => {
         skipClosing = true;
     });
 
-    
 
     test("Check UI of Sign In form", async () => {
         await expect(signInForm.title).toContainText('Log in');

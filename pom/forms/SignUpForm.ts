@@ -1,7 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-// import { registeredUserData, validUserData } from "../UserDataInterface";
 import { UserData } from "../UserDataInterface";
-
 export default class SignUpForm {
     private readonly page: Page;
 
@@ -42,11 +40,6 @@ export default class SignUpForm {
     readonly border_default: string;
     readonly regBtn_color: string;
     readonly regBtnBg_color: string;
-
-
-
-
-
 
     constructor(page: Page) {
         this.page = page;
