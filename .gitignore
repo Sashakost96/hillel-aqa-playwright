@@ -6,3 +6,10 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/.vscode
+.DS_Store
+.env.dev
+.env.prod
+
+
+
