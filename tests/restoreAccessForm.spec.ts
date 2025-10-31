@@ -4,6 +4,8 @@ import HomePage from "../pom/pages/HomePage";
 import RestoreAccessForm from "../pom/forms/RestoreAccessForm";
 import { registeredUserData, inValidUserData } from "../pom/UserDataInterface";
 
+const registeredUser = registeredUserData;
+const inValidUser = inValidUserData;
 let signInForm: SignInForm;
 let homePage: HomePage;
 let restoreAccessForm: RestoreAccessForm;
@@ -34,11 +36,11 @@ test.describe('Restore Access form positive tests', () => {
 
     test("Check Restore Access with valid data", async ({ page }) => {
         await expect(homePage.restoreAccess_model).toBeVisible();
-        restoreAccessForm.FillFormWithEmail(registeredUserData);
+        restoreAccessForm.FillFormWithEmail(registeredUser);
         await expect(restoreAccessForm.send_btn).toBeEnabled();
         await restoreAccessForm.clickOnSendBtn();
         await homePage.restoreAccessFormFormIsNotDisplay();
-        await expect(page).toHaveURL('https://qauto.forstudy.space/');
+        await expect(page).toHaveURL(`${process.env.BASE_URL}`);
         skipClosing = true;
     });
 
@@ -66,11 +68,11 @@ test.describe('Restore Access form negative tests', () => {
         await expect(restoreAccessForm.email_validation).toContainText('Email required');
         await expect(restoreAccessForm.email_input).toHaveCSS('border-color', restoreAccessForm.input_red);
         await expect(restoreAccessForm.send_btn).toBeDisabled();
-        await restoreAccessForm.FillFormWithEmail(inValidUserData);
+        await restoreAccessForm.FillFormWithEmail(inValidUser);
         await expect(restoreAccessForm.email_validation).toContainText('Email is incorrect');
         await expect(restoreAccessForm.email_input).toHaveCSS('border-color', restoreAccessForm.input_red);
         await expect(restoreAccessForm.send_btn).toBeDisabled();
-        await restoreAccessForm.FillFormWithEmail(registeredUserData);
+        await restoreAccessForm.FillFormWithEmail(registeredUser);
         await expect(restoreAccessForm.email_input).toHaveCSS('border-color', restoreAccessForm.border_blue);
         await expect(restoreAccessForm.email_validation).toBeHidden();
         await expect(restoreAccessForm.send_btn).toBeEnabled();

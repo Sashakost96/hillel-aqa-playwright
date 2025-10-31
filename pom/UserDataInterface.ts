@@ -8,8 +8,8 @@ export interface UserData {
 export const registeredUserData: UserData = {
     name: "Test",
     lname: "Auto",
-    email: "ke@gmail.com",
-    password: "test123KO!",
+    email: `${process.env.TEST_USER_REGISTERED_EMAIL}`,
+    password: `${process.env.TEST_USER_REGISTERED_PASSWORD}`,
 };
 
 export const validUserData: UserData = {

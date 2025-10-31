@@ -8,8 +8,8 @@ let homePage: HomePage;
 
 let randomChar = require('random-char');
 let skipClosing: boolean;
-const validData = validUserData;
-const registeredData = registeredUserData;
+const validUser = validUserData;
+const registeredUser = registeredUserData;
 
 test.beforeEach(async ({ page }) => {
     homePage = new HomePage(page);
@@ -48,16 +48,16 @@ test.describe('Sign up form positive tests', () => {
     });
 
     test("Check Successful registration with valid data", async ({ page }) => {
-        signUpForm.SuccessfulSignUp(validData);
+        signUpForm.SuccessfulSignUp(validUser);
         await expect(signUpForm.register_btn).toBeEnabled();
         await signUpForm.clickOnRegistrationBtn();
         await homePage.signUpFormIsNotDisplay();
-        await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage');
+        await expect(page).toHaveURL(`${process.env.BASE_URL}panel/garage`);
         skipClosing = true;
     });
 
     test("Check registration flow using already registered data", async () => {
-        signUpForm.UnsuccessfulSignUp(registeredData);
+        signUpForm.UnsuccessfulSignUp(registeredUser);
         await expect(signUpForm.register_btn).toBeEnabled();
         signUpForm.clickOnRegistrationBtn();
         await expect(signUpForm.registrationError1).toContainText('User already exists');
@@ -72,7 +72,7 @@ test.describe('Sign up form positive tests', () => {
         await expect.soft(signUpForm.name_validation).toContainText('Name is invalid');
         await expect.soft(signUpForm.name_hasBe).toContainText('Name has to be from 2 to 20 characters long');
         await signUpForm.name_input.clear();
-        await signUpForm.name_input.pressSequentially(validData.name);
+        await signUpForm.name_input.pressSequentially(validUser.name);
         await signUpForm.name_input.blur();
         await expect.soft(signUpForm.name_validation).toBeHidden();
         await expect.soft(signUpForm.name_hasBe).toBeHidden();
@@ -84,7 +84,7 @@ test.describe('Sign up form positive tests', () => {
         await expect.soft(signUpForm.lname_validation).toContainText('Last name is invalid');
         await expect.soft(signUpForm.lname_hasBe).toContainText('Last name has to be from 2 to 20 characters long');
         await signUpForm.lname_input.clear();
-        await signUpForm.lname_input.pressSequentially(validData.lname);
+        await signUpForm.lname_input.pressSequentially(validUser.lname);
         await signUpForm.lname_input.blur();
         await expect.soft(signUpForm.lname_validation).toBeHidden();
         await expect.soft(signUpForm.lname_hasBe).toBeHidden();
@@ -95,7 +95,7 @@ test.describe('Sign up form positive tests', () => {
         await signUpForm.email_input.blur();
         await expect.soft(signUpForm.email_validation).toContainText('Email is incorrect');
         await signUpForm.email_input.clear();
-        await signUpForm.email_input.pressSequentially(validData.email);
+        await signUpForm.email_input.pressSequentially(validUser.email);
         await signUpForm.email_input.blur();
         await expect.soft(signUpForm.email_validation).toBeHidden();
     });
@@ -105,7 +105,7 @@ test.describe('Sign up form positive tests', () => {
         await signUpForm.password_input.blur();
         await expect.soft(signUpForm.password_validation).toContainText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
         await signUpForm.password_input.clear();
-        await signUpForm.password_input.pressSequentially(validData.password);
+        await signUpForm.password_input.pressSequentially(validUser.password);
         await signUpForm.password_input.blur();
         await expect.soft(signUpForm.password_validation).toBeHidden();
     });
@@ -115,10 +115,10 @@ test.describe('Sign up form positive tests', () => {
         await signUpForm.repeatPassword_input.blur();
         await expect.soft(signUpForm.repeatPassword_validation).toContainText('Password has to be from 8 to 15 characters long and contain at least one integer, one capital, and one small letter');
         await signUpForm.repeatPassword_input.clear();
-        await signUpForm.repeatPassword_input.pressSequentially(validData.password);
+        await signUpForm.repeatPassword_input.pressSequentially(validUser.password);
         await signUpForm.repeatPassword_input.blur();
         await expect.soft(signUpForm.repeatPassword_validation).toContainText('Passwords do not match');
-        await signUpForm.password_input.pressSequentially(validData.password);
+        await signUpForm.password_input.pressSequentially(validUser.password);
         await expect.soft(signUpForm.repeatPassword_validation).toBeHidden();
     });
 
